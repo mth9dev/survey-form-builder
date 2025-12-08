@@ -6,9 +6,10 @@ import { FormService } from 'src/app/services/form.service';
 import { SubSink } from 'subsink';
 
 @Component({
-  selector: 'app-add-question-dialog',
-  templateUrl: './add-question-dialog.component.html',
-  styleUrls: ['./add-question-dialog.component.scss']
+    selector: 'app-add-question-dialog',
+    templateUrl: './add-question-dialog.component.html',
+    styleUrls: ['./add-question-dialog.component.scss'],
+    standalone: false
 })
 export class AddQuestionDialogComponent implements OnInit {
 
