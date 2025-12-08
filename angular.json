@@ -70,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "form-customizer:build:production"
+              "buildTarget": "form-customizer:build:production"
             },
             "development": {
-              "browserTarget": "form-customizer:build:development"
+              "buildTarget": "form-customizer:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "form-customizer:build"
+            "buildTarget": "form-customizer:build"
           }
         },
         "test": {
