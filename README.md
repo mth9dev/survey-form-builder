@@ -3,7 +3,7 @@ User can create form's questions, configure question's answers (paragraph or che
 
 
 ## Hosted Url
-https://form-customizer.web.app/
+https://form-customizer.web.app/form/builder
 
 
 ## Changes
