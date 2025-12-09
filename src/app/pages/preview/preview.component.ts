@@ -5,9 +5,10 @@ import { FormService } from 'src/app/services/form.service';
 import { SubSink } from 'subsink';
 
 @Component({
-  selector: 'app-preview',
-  templateUrl: './preview.component.html',
-  styleUrls: ['./preview.component.scss']
+    selector: 'app-preview',
+    templateUrl: './preview.component.html',
+    styleUrls: ['./preview.component.scss'],
+    standalone: false
 })
 export class PreviewComponent implements OnInit, OnDestroy {
 

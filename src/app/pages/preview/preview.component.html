@@ -1,28 +1,38 @@
-<div>
-    <div>
-        <!-- Preview -->
-        <div *ngIf="_preview?.questions && _preview?.questions!.length > 0">
-            <div *ngFor="let question of _preview!.questions" class="mt-6">
-                <!-- Title -->
-                <div class="text-xl text-gray-500 font-medium decoration-8">{{question.text}}</div>
-                <!-- "paragraph" question -->
-                <div *ngIf="question.type == _questionTypes.PARAGRAPH" class="w-full mt-3">
-                    {{question.answer}}
-                </div>
-                <!-- "checkbox" question -->
-                <div *ngIf="question.type == _questionTypes.CHECKBOX" class="w-full flex flex-col mt-3">
-                    <div *ngFor="let ans of question.answer">
-                        <span class="mt-2">{{ans}}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- footer -->
+<!-- button bar -->
 <div class="mt-6">
-    <button (click)="backToBuilder()" mat-stroked-button color="primary">
-        <mat-icon class="mr-2 text-base">arrow_back</mat-icon>
-        <span class="mr-1">Back to Form Builder</span>
-    </button>
+  <button (click)="backToBuilder()" matButton="outlined" color="primary">
+    <mat-icon class="mr-2 text-base">arrow_back</mat-icon>
+    <span class="mr-1">Back to Form Builder</span>
+  </button>
+</div>
+<div>
+  <div>
+    <!-- Preview -->
+    @if (_preview?.questions && _preview?.questions!.length > 0) {
+      <div>
+        @for (question of _preview!.questions; track question) {
+          <div class="mt-6">
+            <!-- Title -->
+            <div class="text-xl text-gray-500 font-medium decoration-8">{{question.text}}</div>
+            <!-- "paragraph" question -->
+            @if (question.type == _questionTypes.PARAGRAPH) {
+              <div class="w-full mt-3">
+                {{question.answer}}
+              </div>
+            }
+            <!-- "checkbox" question -->
+            @if (question.type == _questionTypes.CHECKBOX) {
+              <div class="w-full flex flex-col mt-3">
+                @for (ans of question.answer; track ans) {
+                  <div>
+                    <span class="mt-2">{{ans}}</span>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
 </div>

@@ -8,9 +8,10 @@ import { AddQuestionDialogComponent } from 'src/app/shared/add-question-dialog/a
 import { SubSink } from 'subsink';
 
 @Component({
-  selector: 'app-builder',
-  templateUrl: './builder.component.html',
-  styleUrls: ['./builder.component.scss']
+    selector: 'app-builder',
+    templateUrl: './builder.component.html',
+    styleUrls: ['./builder.component.scss'],
+    standalone: false
 })
 export class BuilderComponent implements OnInit, OnDestroy {
 
