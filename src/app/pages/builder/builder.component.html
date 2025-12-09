@@ -1,54 +1,52 @@
 <div>
-  <div [formGroup]="_form!">
-    <!-- "No question" message -->
-    @if (_questionArray!.length == 0) {
-      <div class="flex justify-center items-center w-full h-72 bg-gray-100 mt-6">
-        <span class="flex text-xl text-gray-500 font-medium decoration-8 p-6"> Please click &nbsp; <span
-        class="font-bold"> Add New Question </span> &nbsp; button to add them.</span>
-      </div>
-    }
-    <!-- Display questions -->
-    @if (_questionArray!.length > 0) {
-      <div formArrayName="questions">
-        @for (question of _questionArray.controls; track question; let i = $index) {
-          <div [formGroupName]="i" class="mt-6">
-            <!-- Title -->
-            <div class="text-xl text-gray-500 font-medium decoration-8">{{question.get('text')?.value}}</div>
-            <!-- "paragraph" question -->
-            @if (question.get('type')?.value == _questionTypes.PARAGRAPH) {
-              <mat-form-field appearance="outline"
-                class="w-full mt-3">
-                <textarea matInput formControlName="answer"></textarea>
-                @if (question.get('answer')?.getError('required')) {
-                  <mat-error>Required</mat-error>
-                }
-              </mat-form-field>
-            }
-            <!-- "checkbox" question -->
-            @if (question.get('type')?.value == _questionTypes.CHECKBOX) {
-              <div formArrayName="answer"
-                class="w-full flex flex-col mt-3">
-                @for (option of getCheckboxFormArray(i).controls; track option; let j = $index) {
-                  <div [formGroupName]="j">
-                    <mat-checkbox formControlName="value" class="mt-2">{{option.get('option')!.value}}</mat-checkbox>
-                  </div>
-                }
-              </div>
-            }
-          </div>
-        }
-      </div>
-    }
-  </div>
-  <!-- footer -->
-  <div class="mt-6 flex justify-between">
-    <button (click)="addNewQuestion()" mat-stroked-button color="primary">
+  <!-- buttons bar -->
+  <div class="mt-6 flex">
+    <button (click)="addNewQuestion()" matButton="filled" color="primary" class="mr-3">
       <mat-icon class="mr-2 text-base">add</mat-icon>
       <span class="mr-1">Add New Question</span>
     </button>
-    <button (click)="onPreview()" mat-raised-button color="primary" [disabled]="_questionArray.controls.length == 0">
+    <button (click)="onPreview()" matButton="outlined" color="primary" [disabled]="_questionArray.controls.length == 0">
       <mat-icon class="mr-2 text-base">visibility</mat-icon>
       <span class="mr-1">Preview my answers</span>
     </button>
+  </div>
+  <div [formGroup]="_form!">
+    <!-- "No question" message -->
+    @if (_questionArray!.length == 0) {
+    <div class="flex justify-center items-center w-full h-72 bg-gray-100 mt-6">
+      <span class="flex text-xl text-gray-500 font-medium decoration-8 p-6"> Please click &nbsp; <span
+          class="font-bold"> Add New Question </span> &nbsp; button to start building survey form.</span>
+    </div>
+    }
+    <!-- Display questions -->
+    @if (_questionArray!.length > 0) {
+    <div formArrayName="questions">
+      @for (question of _questionArray.controls; track question; let i = $index) {
+      <div [formGroupName]="i" class="mt-6">
+        <!-- Title -->
+        <div class="text-xl text-gray-500 font-medium decoration-8">{{question.get('text')?.value}}</div>
+        <!-- "paragraph" question -->
+        @if (question.get('type')?.value == _questionTypes.PARAGRAPH) {
+        <mat-form-field appearance="outline" class="w-full mt-3">
+          <textarea matInput formControlName="answer"></textarea>
+          @if (question.get('answer')?.getError('required')) {
+          <mat-error>Required</mat-error>
+          }
+        </mat-form-field>
+        }
+        <!-- "checkbox" question -->
+        @if (question.get('type')?.value == _questionTypes.CHECKBOX) {
+        <div formArrayName="answer" class="w-full flex flex-col mt-3">
+          @for (option of getCheckboxFormArray(i).controls; track option; let j = $index) {
+          <div [formGroupName]="j">
+            <mat-checkbox formControlName="value" class="mt-2">{{option.get('option')!.value}}</mat-checkbox>
+          </div>
+          }
+        </div>
+        }
+      </div>
+      }
+    </div>
+    }
   </div>
 </div>
